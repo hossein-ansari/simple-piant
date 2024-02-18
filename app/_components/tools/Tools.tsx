@@ -1,7 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { contextBox } from "@/app/_context/context";
 import "./style.css";
 export default function Tools() {
+  const context:unknown = useContext(contextBox);
   const [tools, setTools] = useState<Array<Object>>([
     { icon: "brush", name: "brush", style: "select" },
     { icon: "test", name: "test", style: "unSelect" },
@@ -17,7 +19,6 @@ export default function Tools() {
     );
     toolSelected.style = "select";
     setTools(toolsCopy);
-    console.log(tools);
   }
   return (
     <div className="toolBar">
