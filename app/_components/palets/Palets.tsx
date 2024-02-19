@@ -22,6 +22,7 @@ const Palets: React.FC = () => {
           y: clientY,
           id: Math.random().toString(),
           color: context.selectedColor,
+          size: context.brushSize,
         },
       ]);
     }
@@ -39,17 +40,18 @@ const Palets: React.FC = () => {
       onMouseDown={clickHandler}
       onMouseMove={(e) => MoveHandler(e)}
     >
-      {circles.map((circle:any) => (
+      {circles.map((circle: any) => (
         <div
           key={circle.id}
           style={{
             position: "absolute",
-            left: circle.x - 10,
-            top: circle.y - 10,
+            left:
+              circle.x - (circle.size > 25 ? circle.size - 15 : circle.size),
+            top: circle.y - (circle.size > 25 ? circle.size - 15 : circle.size),
             backgroundColor: circle.color,
             borderRadius: "50%",
-            width: "15px",
-            height: "15px",
+            width: `${circle.size}px`,
+            height: `${circle.size}px`,
           }}
         ></div>
       ))}

@@ -6,16 +6,21 @@
 .selectedColorBar{
     align-items: center;
     justify-content: center;
+
 }
 .selectedColorBar p{
     margin-left: 6px;
 
 }
 .selectedColor{
+    border-radius: 3px;
+
     width: 56px;
     height: 60px ;
 }
 .colorPaletsSelected{
+    border-radius: 3px;
+
     border: 1px solid black;
     margin: 0px 2px;
     width: 62px;
