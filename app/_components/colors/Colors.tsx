@@ -3,8 +3,10 @@
 import React, { useContext, useState } from "react";
 import "./style.css";
 import { contextBox } from "@/app/_context/context";
+import { ChromePicker } from 'react-color';
 const Colors: React.FC = () => {
   const context: unknown = useContext(contextBox);
+  const [isOpenCustomColor , setIsOpenCustomColor] = useState<boolean>(false)
   const [colors, setColors] = useState<Array<string>>([
     "#0000FF",
     "#FFFF00",
@@ -19,7 +21,7 @@ const Colors: React.FC = () => {
     "#4B0082",
     "#800000",
   ]);
-  function changeSelectedColor(color: string) {
+  function changeSelectedColor(color) {
     context.setSelectedColor(color);
   }
   return (
@@ -47,6 +49,14 @@ const Colors: React.FC = () => {
             ></div>
           </div>
         ))}
+      </div>
+      <div className="customColorNavBar">
+        <div className="customColorBar" onClick={(e)=> setIsOpenCustomColor(!isOpenCustomColor)}>
+          <div className="customColor"></div>
+        </div>
+        {isOpenCustomColor &&
+        <div className="colorPicker">   <ChromePicker color={context.selectedColor} onChange={(e)=> changeSelectedColor(e.hex)} /></div>
+        }
       </div>
     </div>
   );

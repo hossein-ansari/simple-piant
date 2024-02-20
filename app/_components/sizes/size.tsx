@@ -29,6 +29,7 @@ export default function Size() {
             onChange={(e) => changeBrushSize(e.target.value)}
             value={`${context.brushSize}`}
             min={1}
+            max={100}
             style={{
               width: "40px",
             }}

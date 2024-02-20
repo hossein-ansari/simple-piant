@@ -1,5 +1,8 @@
 .palets{
     width: 100%;
     height: 800px;
-    border: 10px solid yellow;
+    border: 10px solid yellow outset;
+    padding: 10px;
+    background-color: #fff;
+    z-index: -10;
 }

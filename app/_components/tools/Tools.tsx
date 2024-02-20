@@ -6,7 +6,7 @@ export default function Tools() {
   const context:unknown = useContext(contextBox);
   const [tools, setTools] = useState<Array<Object>>([
     { icon: "brush", name: "brush", style: "select" },
-    { icon: "test", name: "test", style: "unSelect" },
+    { icon: "eraser", name: "eraser", style: "unSelect" },
   ]);
   function selectTool(tool) {
     const toolsCopy = [...tools];
@@ -18,6 +18,7 @@ export default function Tools() {
       (e) => e.name === tool.name
     );
     toolSelected.style = "select";
+    context.setSelectedTool(tool.name)
     setTools(toolsCopy);
   }
   return (

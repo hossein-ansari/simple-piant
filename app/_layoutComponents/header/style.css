@@ -1,6 +1,7 @@
 .headerBar{
     display: flex;
     align-items: center;
+    height: 150px;
     justify-content: center;
     width: 100%;
     border-bottom: 2px solid black;

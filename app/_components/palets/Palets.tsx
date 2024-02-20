@@ -13,8 +13,9 @@ const Palets: React.FC = () => {
   }
 
   function MoveHandler(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    if (isDragging) {
-      const { clientX, clientY } = event;
+    const { clientX, clientY } = event;
+    let isDrawOn = isDragging && clientY > (150 + Number(context.brushSize));
+    if (isDrawOn && context.selectedTool === 'brush') {
       setCircles((prevCircles) => [
         ...prevCircles,
         {
@@ -23,6 +24,21 @@ const Palets: React.FC = () => {
           id: Math.random().toString(),
           color: context.selectedColor,
           size: context.brushSize,
+          reduce: '50%',
+        },
+      ]);
+    }
+    if (isDrawOn && context.selectedTool === 'eraser') {
+      setCircles((prevCircles) => [
+        ...prevCircles,
+        {
+          x: clientX,
+          y: clientY,
+          reduce: '0',
+          id: Math.random().toString(),
+          color: '#fff',
+          size: context.brushSize,
+          zIndex: '-10',
         },
       ]);
     }
@@ -46,10 +62,10 @@ const Palets: React.FC = () => {
           style={{
             position: "absolute",
             left:
-              circle.x - (circle.size > 25 ? circle.size - 15 : circle.size),
-            top: circle.y - (circle.size > 25 ? circle.size - 15 : circle.size),
+              circle.x - (circle.size > 20 ? circle.size - 15 : circle.size),
+            top: circle.y - (circle.size > 20 ? circle.size - 15 : circle.size),
             backgroundColor: circle.color,
-            borderRadius: "50%",
+            borderRadius: circle.reduce,
             width: `${circle.size}px`,
             height: `${circle.size}px`,
           }}
